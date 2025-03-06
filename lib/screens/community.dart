@@ -8,124 +8,135 @@ class CommunityScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: 
-        Container(
-          color: Colors.white,
-          child:
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: double.infinity, // Full width
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/mountain.png"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 50.0,
-                      left: 20,
-                      right: 20,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(width: 20),
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            width: 500,
 
-                        // Menu Button
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Color(0xFF43B888),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: IconButton(
-                            icon: Image.asset(
-                              "assets/icons/menu.png",
-                              width: 16,
-                              height: 16,
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ),
-                      ],
+            color: Colors.white,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: double.infinity, // Full width
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/mountain.png"),
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  SizedBox(height: 20),
-                  // Title Text
-                  Padding(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 50.0,
+                          left: 20,
+                          right: 20,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(width: 20),
+
+                            // Menu Button
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xFF43B888),
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: IconButton(
+                                icon: Image.asset(
+                                  "assets/icons/menu.png",
+                                  width: 16,
+                                  height: 16,
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      // Title Text
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 20,
+                          right: 20,
+                          bottom: 16.0,
+                        ),
+                        child: Text(
+                          'Welcome to your community',
+                          style: GoogleFonts.plusJakartaSans(
+                            color: Colors.white,
+                            fontSize: 21,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      _buildToggleButtons(),
+                    ],
+                  ),
+                ),
+
+                // Scroll Section
+                Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      bottom: 30,
+                    ),
+                    child: _buildScrollSection(),
+                  ),
+                ),
+
+                // Get Inspired Section
+                Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      bottom: 30,
+                    ),
+                    child: _buildGetInspiredSection(),
+                  ),
+                ),
+
+                // Questions by Topic
+                Container(
+                  color: Colors.white,
+                  child: Padding(
                     padding: const EdgeInsets.only(
                       left: 20,
                       right: 20,
                       bottom: 16.0,
                     ),
-                    child: Text(
-                      'Welcome to your community',
-                      style: GoogleFonts.plusJakartaSans(
-                        color: Colors.white,
-                        fontSize: 21,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                    child: _buildQuestionsByTopic(),
                   ),
-                  _buildToggleButtons(),
-                ],
-              ),
-            ),
-
-            // Scroll Section
-            Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
-                child: _buildScrollSection(),
-              ),
-            ),
-
-            // Get Inspired Section
-            Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
-                child: _buildGetInspiredSection(),
-              ),
-            ),
-
-            // Questions by Topic
-            Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                  bottom: 16.0,
                 ),
-                child: _buildQuestionsByTopic(),
-              ),
-            ),
 
-            // Family Members Section
-            Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                  bottom: 16.0,
+                // Family Members Section
+                Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      bottom: 16.0,
+                    ),
+                    child: _buildFamilyMembersSection(),
+                  ),
                 ),
-                child: _buildFamilyMembersSection(),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
-      ),),
-
+      ),
       bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
@@ -160,29 +171,21 @@ class CommunityScreen extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-            _buildScrollCard(
+              _buildScrollCard(
                 'Community',
                 'Get Inspired',
                 'assets/icons/comm.png',
               ),
-            SizedBox(width: 10),
-            _buildScrollCard(
+              SizedBox(width: 10),
+              _buildScrollCard(
                 'Community',
                 'Inspire Others',
                 'assets/icons/comm.png',
               ),
-            SizedBox(width: 10),
-            _buildScrollCard(
-                'Family',
-                'Add Family',
-                'assets/icons/fam.png',
-              ),
-            SizedBox(width: 10),
-            _buildScrollCard(
-                'Family',
-                'View Family',
-                'assets/icons/fam.png',
-              ),
+              SizedBox(width: 10),
+              _buildScrollCard('Family', 'Add Family', 'assets/icons/fam.png'),
+              SizedBox(width: 10),
+              _buildScrollCard('Family', 'View Family', 'assets/icons/fam.png'),
             ],
           ),
         ),
@@ -203,7 +206,13 @@ class CommunityScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(title, style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600, fontSize: 12)),
+            Text(
+              title,
+              style: GoogleFonts.plusJakartaSans(
+                fontWeight: FontWeight.w600,
+                fontSize: 12,
+              ),
+            ),
             SizedBox(height: 15),
             Image.asset(icon, width: 20, height: 20),
             SizedBox(height: 15),
@@ -486,7 +495,12 @@ class CommunityScreen extends StatelessWidget {
       padding: const EdgeInsets.only(top: 20, left: 30, right: 30, bottom: 30),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border(top: BorderSide(color: const Color.fromARGB(255, 219, 219, 219), width: 1.0)),
+        border: Border(
+          top: BorderSide(
+            color: const Color.fromARGB(255, 219, 219, 219),
+            width: 1.0,
+          ),
+        ),
       ),
       child: BottomNavigationBar(
         items: [
@@ -502,7 +516,11 @@ class CommunityScreen extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Column(
               children: [
-                Image.asset("assets/icons/guestions.png", width: 20, height: 20),
+                Image.asset(
+                  "assets/icons/guestions.png",
+                  width: 20,
+                  height: 20,
+                ),
                 SizedBox(height: 8),
               ],
             ),
@@ -511,7 +529,11 @@ class CommunityScreen extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Column(
               children: [
-                Image.asset("assets/icons/community.png", width: 20, height: 20),
+                Image.asset(
+                  "assets/icons/community.png",
+                  width: 20,
+                  height: 20,
+                ),
                 SizedBox(height: 8),
               ],
             ),
@@ -520,7 +542,11 @@ class CommunityScreen extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Column(
               children: [
-                Image.asset("assets/icons/purchases.png", width: 20, height: 20),
+                Image.asset(
+                  "assets/icons/purchases.png",
+                  width: 20,
+                  height: 20,
+                ),
                 SizedBox(height: 8),
               ],
             ),
@@ -544,7 +570,6 @@ class CommunityScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         type: BottomNavigationBarType.fixed,
         elevation: 0,
-
       ),
     );
   }
